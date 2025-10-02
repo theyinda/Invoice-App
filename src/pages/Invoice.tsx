@@ -4,77 +4,36 @@ import Grid from "@mui/material/Grid";
 import StatCard from "../components/Stats";
 import { InvoiceActionCard } from "../components/InvoiceActions";
 import { RecentActivities, RecentInvoices } from "../components/InvoiceCard";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import InvoiceDetailsModal from "./InvoiceDetails";
-import type { ActivityItem, InvoiceGroup } from "../types/invoice";
+import type { ActivityItem, InvoiceGroup, InvoiceItem, Stats } from "../types/invoice";
 
 const Invoice = () => {
+    const [invoices, setInvoices] = useState<InvoiceGroup[]>([]);
+    const [activities, setActivities] = useState<ActivityItem[]>([]);
+    const [stats, setStats] = useState<Stats | null>(null);
+    const [selectedInvoice, setSelectedInvoice] = useState<InvoiceItem | null>(null);
 
-    const [isModal, setIsModal] = useState(true)
 
+    useEffect(() => {
+        fetch("/api/invoices")
+            .then((res) => res.json())
+            .then(setInvoices);
+    }, []);
+    useEffect(() => {
+        fetch("/api/activities")
+            .then((res) => res.json())
+            .then(setActivities);
+    }, []);
+    useEffect(() => {
+        fetch("/api/stats")
+            .then((res) => res.json())
+            .then(setStats);
+    }, []);
 
-    const groups: InvoiceGroup[] = [
-        {
-            dateLabel: "Today, 27th November 2022",
-            invoices: [
-                {
-                    id: "1023494 - 2304",
-                    title: "Invoice -",
-                    dueDateLabel: "DUE DATE",
-                    dueDate: "May 19th, 2023",
-                    amount: "₦1,311,750.12",
-                    status: "PAID",
-                },
-                {
-                    id: "#INV-1002",
-                    title: "Invoice",
-                    dueDateLabel: "Due date",
-                    dueDate: "May 19, 2023",
-                    amount: "₦520,000.00",
-                    status: "PENDING PAYMENT",
-                },
-            ],
-        },
-        {
-            dateLabel: "8th December 2022",
-            invoices: [
-                {
-                    id: "#INV-1003",
-                    title: "Invoice",
-                    dueDateLabel: "Due date",
-                    dueDate: "Dec 25, 2023",
-                    amount: "₦750,000.00",
-                    status: "OVERDUE",
-                },
-            ],
-        },
-    ];
-
-    const activities: ActivityItem[] = [
-        {
-            timeLabel: "Yesterday, 12:05 PM",
-            actionTitle: "Invoice creation",
-            description: "Created Invoice #INV-1001 / Olani Ojo Adewale",
-        },
-        {
-            timeLabel: "Yesterday, 2:30 PM",
-            actionTitle: "Payment Received",
-            description: "Created Invoice #INV-1001 / Olani Ojo Adewale",
-        },
-        {
-            timeLabel: "Yesterday, 2:30 PM",
-            actionTitle: "Payment Received",
-            description: "Created Invoice #INV-1001 / Olani Ojo Adewale",
-        },
-        {
-            timeLabel: "Yesterday, 2:30 PM",
-            actionTitle: "Payment Received",
-            description: "Created Invoice #INV-1001 / Olani Ojo Adewale",
-        },
-    ];
+    const selectedActivity = activities.filter((i) => i.invoiceId === selectedInvoice?.id)
     return (
         <Box sx={{ p: 3 }}>
-            {/* Top row */}
             <Box sx={{ display: "flex", justifyContent: "space-between", alignItems: "center", mb: 4, mt: 7 }}>
                 <Typography variant="h5" sx={{
                     color: "#1F1F23",
@@ -107,26 +66,23 @@ const Invoice = () => {
                 </Box>
             </Box>
 
-            {/* Stats Grid */}
-
-
             <Grid container spacing={3}>
                 <Grid size={{ xs: 12, sm: 6, md: 3 }}>
                     <StatCard
                         icon={<img src="/home.svg" alt="home" style={{ width: 40, height: 40 }} />}
                         title="TOTAL PAID"
-                        chipLabel="1,289"
+                        chipLabel={stats?.paid as string}
                         chipColor="#B6FDD3"
-                        value="$4,120.76"
+                        value={stats?.totalPaid as string}
                     />
                 </Grid>
                 <Grid size={{ xs: 12, sm: 6, md: 3 }}>
                     <StatCard
                         icon={<img src="/home.svg" alt="home" style={{ width: 40, height: 40 }} />}
                         title="TOTAL OVERDUE"
-                        chipLabel="830"
+                        chipLabel={stats?.unpaid as string}
                         chipColor="#FFB7BD"
-                        value="$2,310.50"
+                        value={stats?.totalOverdue as string}
 
                     />
                 </Grid>
@@ -134,18 +90,18 @@ const Invoice = () => {
                     <StatCard
                         icon={<img src="/home.svg" alt="home" style={{ width: 40, height: 40 }} />}
                         title="TOTAL DRAFT"
-                        chipLabel="400"
+                        chipLabel={stats?.draft as string}
                         chipColor="#D9D9E0"
-                        value="$1,120.90"
+                        value={stats?.totalDraft as string}
                     />
                 </Grid>
                 <Grid size={{ xs: 12, sm: 6, md: 3 }}>
                     <StatCard
                         icon={<img src="/home.svg" alt="home" style={{ width: 40, height: 40 }} />}
                         title="TOTAL UNPAID"
-                        chipLabel="520"
+                        chipLabel={stats?.unpaid as string}
                         chipColor="#F8E39B"
-                        value="$3,210.45"
+                        value={stats?.unpaid as string}
                     />
                 </Grid>
             </Grid>
@@ -187,22 +143,19 @@ const Invoice = () => {
 
 
             <Box display="flex" gap={3} mt={4}>
-                <RecentInvoices groups={groups} />
+                <RecentInvoices groups={invoices} onSelectInvoice={setSelectedInvoice} />
                 <RecentActivities activities={activities} />
             </Box>
 
-            {isModal && (
+            {selectedInvoice && (
                 <InvoiceDetailsModal
-                    open={isModal}
-                    onClose={() => setIsModal(false)}
-                    activities={activities}
+                    open={!!selectedInvoice}
+                    onClose={() => setSelectedInvoice(null)}
+                    activities={selectedActivity}
+                    invoice={selectedInvoice}
                 />
             )}
-            <InvoiceDetailsModal
-                open={isModal}
-                onClose={() => setIsModal(false)}
-                activities={activities}
-            />
+
         </Box>
     );
 };

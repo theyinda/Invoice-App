@@ -5,6 +5,7 @@ import {
     Typography,
     Button,
     Chip,
+    Grid,
 } from "@mui/material";
 import {
     Timeline,
@@ -55,58 +56,82 @@ const getBorderColor = (status: string) => {
 function InvoiceRow({ inv }: { inv: InvoiceItem }) {
     return (
         <Box
-            sx={{
-                display: "flex",
-                gap: 2,
-                alignItems: "center",
-                justifyContent: "space-between",
-                p: 1.5,
-            }}
         >
-            <Box sx={{}}>
-                <Typography variant="body1" fontWeight={700}>
-                    {inv.title}
-                </Typography>
-                <Typography variant="caption" color="text.secondary">
-                    {inv.id}
-                </Typography>
-            </Box>
+            <Grid container spacing={3}>
+                <Grid size={{ xs: 12, sm: 6, md: 4 }}>
+                    <Typography
+                        sx={{
+                            color: "#1F1F23",
+                            fontSize: "14px",
+                            lineHeight: "180%",
+                            fontWeight: 600,
+                        }}
+                    >
+                        Invoice-
+                    </Typography>
+                    <Typography
+                        sx={{
+                            color: "#1F1F23",
+                            fontSize: "14px",
+                            lineHeight: "180%",
+                            fontWeight: 600,
+                        }}
+                    >
+                        {inv.id}
+                    </Typography>
+                </Grid>
+                <Grid size={{ xs: 12, sm: 6, md: 4 }}>
+                    <Typography
+                        sx={{
+                            color: "#666F77",
+                            fontSize: "10px",
+                            lineHeight: "20px",
+                            fontWeight: 400,
+                        }}
+                    >
+                        {inv.dueDateLabel}
+                    </Typography>
+                    <Typography
+                        sx={{
+                            color: "#697598",
+                            fontSize: "14px",
+                            lineHeight: "20px",
+                            fontWeight: 600,
+                        }}
+                    >
+                        {inv.dueDate}
+                    </Typography>
+                </Grid>
+                <Grid size={{ xs: 12, sm: 6, md: 4 }}>
+                    <Typography
+                        sx={{
+                            color: "#373B47",
+                            fontSize: "16px",
+                            lineHeight: "20px",
+                            fontWeight: 600,
+                        }}
+                    >
+                        {inv.amount}
+                    </Typography>
+                    <Chip
+                        label={inv.status}
+                        sx={{
+                            color: getColor(inv.status),
+                            background: getBgColor(inv.status),
+                            border: `1px solid ${getBorderColor(inv.status)}`,
+                        }}
+                        size="small"
+                    />
+                </Grid>
 
-            <Box sx={{}}>
-                <Typography variant="caption" color="text.secondary">
-                    {inv.dueDateLabel}
-                </Typography>
-                <Typography variant="body2">{inv.dueDate}</Typography>
-            </Box>
-
-            <Box sx={{ textAlign: "right" }}>
-                <Typography
-                    sx={{
-                        color: "#1F1F23",
-                        fontSize: "16px",
-                        lineHeight: "20px",
-                        fontWeight: 700,
-                    }}
-                >
-                    {inv.amount}
-                </Typography>
-                <Chip
-                    label={inv.status}
-                    sx={{
-                        color: getColor(inv.status),
-                        background: getBgColor(inv.status),
-                        border: `1px solid ${getBorderColor(inv.status)}`,
-                    }}
-                    size="small"
-                />
-            </Box>
+            </Grid>
         </Box>
     );
 }
 
-export function RecentInvoices({ groups }: { groups: InvoiceGroup[] }) {
+export function RecentInvoices({ groups, onSelectInvoice }: { groups: InvoiceGroup[], onSelectInvoice: (invoice: InvoiceItem) => void; }) {
     return (
-        <Card sx={{ width: "60%", borderRadius: 2, boxShadow: 2 }}>
+        <Card sx={{ width: "60%", borderRadius: "40px", padding: '32px 32px 10px 32px' }}>
             <CardContent>
                 <Box
                     display="flex"
@@ -145,15 +170,19 @@ export function RecentInvoices({ groups }: { groups: InvoiceGroup[] }) {
 
                 {groups.map((g, gi) => (
                     <Box key={gi} mb={3}>
-                        <Typography variant="subtitle2" color="text.secondary" mb={1}>
+
+                        <Typography variant="subtitle2" color="text.secondary" mb={2}>
                             {g.dateLabel}
                         </Typography>
 
-                        <Box sx={{ display: "flex", flexDirection: "column", gap: 1 }}>
+                        <Box sx={{ display: "flex", flexDirection: "column", gap: 4 }}>
                             {g.invoices.map((inv) => (
-                                <InvoiceRow key={inv.id} inv={inv} />
+                                <Box key={inv.id} onClick={() => onSelectInvoice(inv)}>
+                                    <InvoiceRow inv={inv} />
+                                </Box>
                             ))}
                         </Box>
+
                     </Box>
                 ))}
             </CardContent>
@@ -171,7 +200,7 @@ export function ActivityRow({ a }: { a: ActivityItem }) {
             }}
         >
             <img
-                src="/avatar.svg"
+                src={a?.logoUrl}
                 alt="home"
                 style={{ width: 48, height: 48, borderRadius: "30px" }}
             />
@@ -216,7 +245,7 @@ export function RecentActivities({
     activities: ActivityItem[];
 }) {
     return (
-        <Card sx={{ width: "40%", borderRadius: 2, boxShadow: 2 }}>
+        <Card sx={{ width: "40%", borderRadius: "40px", padding: '32px 32px 10px 32px' }}>
             <CardContent>
                 <Box
                     display="flex"
@@ -270,6 +299,7 @@ export function InvoiceActivity({
 }: {
     activities: ActivityItem[];
 }) {
+
     return (
         <Box sx={{ width: "40%", ml: "2rem" }}>
             <Box>
@@ -312,7 +342,6 @@ export function InvoiceActivity({
                                     style={{ width: 48, height: 48, borderRadius: "30px" }}
                                 />
 
-                                {/* Show connector only if not the last item */}
                                 {i < activities.length - 1 && (
                                     <TimelineConnector
                                         sx={{ bgcolor: "#E3E6EF", width: "1px" }}

@@ -18,7 +18,6 @@ import {
 } from "@mui/material";
 import { ExpandMore as ExpandMoreIcon } from "@mui/icons-material";
 import MenuIcon from "@mui/icons-material/Menu";
-import NotificationsIcon from "@mui/icons-material/Notifications";
 import { useTheme } from "@mui/material/styles";
 import { useAuth } from "../context/AuthContext";
 
@@ -108,21 +107,22 @@ export default function DashboardLayout() {
                             <MenuIcon />
                         </IconButton>
                     )}
-                    <Typography variant="h6" sx={{ flexGrow: 1, fontSize: '28px', lineHeight: "100%", fontWeight: 500, color: "#373B47" }}>
+                    <Typography variant="h6" sx={{ flexGrow: 1, fontSize: '28px', lineHeight: "100%", fontWeight: 600, color: "#373B47" }}>
                         INVOICE
                     </Typography>
 
-                    <IconButton sx={{ bgcolor: "#fff", }}>
-                        <NotificationsIcon sx={{ color: "#373B47" }} />
+                    <IconButton sx={{ bgcolor: "#fff", borderRadius: "30px", mr: '1rem' }}>
+                        <img
+                            src="/notification.svg"
+                            alt="home"
+                            style={{ width: 24, height: 24, }}
+                        />
                     </IconButton>
 
-                    <Box display="flex" alignItems="center">
+                    <Box display="flex" alignItems="center" sx={{ bgcolor: "#fff", borderRadius: "30px" }}>
                         <IconButton onClick={handleOpen}>
-                            <Avatar
-                                src={user?.photoURL || ""}
-                                alt={user?.displayName || "User"}
-                                sx={{ width: 32, height: 32, mr: 1 }}
-                            />
+                            <Avatar sx={{ bgcolor: "#003EFF" }}> {user?.displayName?.split(" ")[0][0]}</Avatar>
+
                             <ExpandMoreIcon fontSize="small" />
                         </IconButton>
 
@@ -162,14 +162,8 @@ export default function DashboardLayout() {
                     flexGrow: 1,
                     padding: "0 24px",
                     width: '100%',
-                    // maxWidth: '1440px',
                     margin: "20px 0",
-                    // display: 'flex',
-                    // justifyContent: 'center',
-                    // background: 'red',
-
                     mt: 4,
-                    // ...(isLargeScreen && { ml: `${drawerWidth}px` }),
                 }}
             >
                 <Outlet />
