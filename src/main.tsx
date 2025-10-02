@@ -11,7 +11,7 @@ const theme = createTheme({
   palette: { mode: "light" },
 });
 
-if (import.meta.env.MODE === "development") {
+if (import.meta.env.NODE_ENV === "development") {
   import("./mocks/browser").then(({ worker }) => {
     worker.start();
   });
