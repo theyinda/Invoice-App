@@ -11,11 +11,13 @@ const theme = createTheme({
   palette: { mode: "light" },
 });
 
-if (import.meta.env.NODE_ENV === "development") {
-  import("./mocks/browser").then(({ worker }) => {
-    worker.start();
-  });
-}
+// if (import.meta.env.NODE_ENV === "development") {
+//   import("./mocks/browser").then(({ worker }) => {
+//     worker.start();
+//   });
+// }
+import("./mocks/browser").then(({ worker }) => worker.start());
+
 
 
 ReactDOM.createRoot(document.getElementById("root")!).render(

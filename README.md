@@ -1,73 +1,63 @@
 # React + TypeScript + Vite
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+# Invoice App
 
-Currently, two official plugins are available:
+A simple invoice app built with **React + Vite**.  
+Implements Firebase authentication, mock APIs with MSW, real-time updates, and responsive UI based on the provided Figma design.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## React Compiler
+## Features
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+**Authentication** — Signup/Login with Firebase (Email/Password or Google)  
+**Dashboard** — Invoice stats, recent invoices, and activities  
+**Invoice Details** — Sender & customer info, payment info, line items, activity feed  
+**Mock Backend** — API requests handled with [MSW](https://mswjs.io/)  
+**Real-time updates** — Socket-based events for invoice updates (optional)  
+**Testing** — Unit & integration tests with Vitest + React Testing Library  
+**Responsive** — Works on desktop & mobile  
+-**Error handling** — Invalid URLs, loading states
 
-## Expanding the ESLint configuration
+````js
+1. Clone the repo
+```bash
+git clone <your-repo-url>
+cd <repo>
+````
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+2. Install dependencies
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+```bash
+npm install
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+3. Setup environment variables
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+```bash
+VITE_FIREBASE_API_KEY=AIzaSyDQhEZ2OGyPTw7Jr1H2zg6DDQUbom5mpgo
+VITE_FIREBASE_AUTH_DOMAIN=invoiceapp-41af8.firebaseapp.com
+VITE_FIREBASE_PROJECT_ID=invoiceapp-41af8
+VITE_FIREBASE_STORAGE_BUCKET=invoiceapp-41af8.firebasestorage.app
+VITE_FIREBASE_MESSAGING_SENDER_ID=931722537485
+VITE_FIREBASE_APP_ID=1:931722537485:web:a3a753de689f26c77ec344
+VITE_FIREBASE_MEASUREMENT_ID=G-DBRLQ9LQ7F
+NODE_ENV=development
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```
+
+4. Run the project
+
+```bash
+npm run dev
+```
+
+5. Run tests:
+
+```bash
+npm run test
+```
+
+```
+
 ```
