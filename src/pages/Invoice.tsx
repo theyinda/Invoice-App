@@ -6,33 +6,11 @@ import { InvoiceActionCard } from "../components/InvoiceActions";
 import { RecentActivities, RecentInvoices } from "../components/InvoiceCard";
 import { useState } from "react";
 import InvoiceDetailsModal from "./InvoiceDetails";
+import type { ActivityItem, InvoiceGroup } from "../types/invoice";
 
 const Invoice = () => {
 
     const [isModal, setIsModal] = useState(true)
-
-    type InvoiceStatus = "PAID" | "OVERDUE" | "DRAFT" | "PENDING PAYMENT";
-
-    type InvoiceItem = {
-        id: string;
-        title: string;
-        dueDateLabel: string;
-        dueDate: string;
-        amount: string;
-        status: InvoiceStatus;
-    };
-
-    type InvoiceGroup = {
-        dateLabel: string;
-        invoices: InvoiceItem[];
-    };
-
-    type ActivityItem = {
-        timeLabel: string;
-        actionTitle: string;
-        description: string;
-        avatarLetter?: string;
-    };
 
 
     const groups: InvoiceGroup[] = [

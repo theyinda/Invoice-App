@@ -1,4 +1,3 @@
-// src/context/AuthContext.tsx
 import { createContext, useContext, useEffect, useState } from "react";
 import type { ReactNode } from "react";
 import type { User } from "firebase/auth";
@@ -6,13 +5,13 @@ import {
     onAuthStateChanged,
     signOut,
     createUserWithEmailAndPassword,
-    updateProfile,
+    // updateProfile,
     signInWithEmailAndPassword
 } from "firebase/auth";
 import { auth } from "../services/firebase";
 
 type AuthContextType = {
-    user: User | null | undefined; // undefined while loading
+    user: User | null | undefined;
     loading: boolean;
     logout: () => Promise<void>;
     signup: (email: string, password: string) => Promise<User>;

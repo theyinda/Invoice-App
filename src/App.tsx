@@ -3,9 +3,9 @@ import LoginPage from "./pages/LoginPage";
 import SignUpPage from "./pages/SignUpPage";
 import PrivateRoute from "./routes/PrivateRoutes";
 import NotFoundPage from "./pages/NotFoundPage";
-import DashboardShell from "./components/DashboardShell";
 import { Box } from "@mui/material";
 import Invoice from "./pages/Invoice";
+import DashboardLayout from "./components/Layout";
 
 export default function App() {
   return (
@@ -20,16 +20,14 @@ export default function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/signup" element={<SignUpPage />} />
 
-        {/* Protect /invoice with PrivateRoute */}
         <Route
           path="/invoice"
           element={
             <PrivateRoute>
-              <DashboardShell />
+              <DashboardLayout />
             </PrivateRoute>
           }
         >
-          {/* Invoice is the main page inside the shell */}
           <Route index element={<Invoice />} />
         </Route>
 

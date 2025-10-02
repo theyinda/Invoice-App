@@ -1,11 +1,9 @@
 import React from "react";
-import { Container, Box, Typography, Button, TextField, Paper, Divider } from "@mui/material";
+import { Box, Typography, Button, TextField, Paper, Divider } from "@mui/material";
 import { signInWithPopup } from "firebase/auth";
 import { auth, googleProvider } from "../services/firebase";
 import { useAuth } from "../context/AuthContext";
 import { useNavigate, useLocation, Link as RouterLink } from "react-router-dom";
-import EmailIcon from "@mui/icons-material/Email";
-import LockIcon from "@mui/icons-material/Lock";
 import GoogleIcon from "@mui/icons-material/Google";
 
 export default function LoginPage() {

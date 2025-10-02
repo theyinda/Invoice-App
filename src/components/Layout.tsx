@@ -24,7 +24,7 @@ import { useAuth } from "../context/AuthContext";
 
 const drawerWidth = 240;
 
-export default function DashboardShell() {
+export default function DashboardLayout() {
     const { user, logout } = useAuth();
     const [drawerOpen, setDrawerOpen] = React.useState(false);
     const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -140,7 +140,6 @@ export default function DashboardShell() {
                 </Toolbar>
             </AppBar>
 
-            {/* Drawer (responsive) */}
             {isLargeScreen ? (
                 <Drawer
                     variant="permanent"
@@ -157,8 +156,6 @@ export default function DashboardShell() {
                     {drawerContent}
                 </Drawer>
             )}
-
-            {/* Main content */}
             <Box
                 component="main"
                 sx={{

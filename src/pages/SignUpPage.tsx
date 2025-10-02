@@ -4,9 +4,6 @@ import { signInWithPopup, updateProfile } from "firebase/auth";
 import { auth, googleProvider } from "../services/firebase";
 import { useNavigate, useLocation, Link as RouterLink } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
-import PersonIcon from "@mui/icons-material/Person";
-import EmailIcon from "@mui/icons-material/Email";
-import LockIcon from "@mui/icons-material/Lock";
 import GoogleIcon from "@mui/icons-material/Google";
 
 const SignUpPage = () => {
@@ -34,6 +31,8 @@ const SignUpPage = () => {
 
         try {
             const newUser = await signup(email, password);
+
+            console.log(newUser, "newUsr")
 
             // update profile with full name
             if (auth.currentUser) {
