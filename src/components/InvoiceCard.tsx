@@ -58,7 +58,7 @@ function InvoiceRow({ inv }: { inv: InvoiceItem }) {
         <Box
         >
             <Grid container spacing={3}>
-                <Grid size={{ xs: 12, sm: 6, md: 4 }}>
+                <Grid size={{ xs: 12, sm: 6, lg: 4 }}>
                     <Typography
                         sx={{
                             color: "#1F1F23",
@@ -80,7 +80,7 @@ function InvoiceRow({ inv }: { inv: InvoiceItem }) {
                         {inv.id}
                     </Typography>
                 </Grid>
-                <Grid size={{ xs: 12, sm: 6, md: 4 }}>
+                <Grid size={{ xs: 12, sm: 6, lg: 4 }}>
                     <Typography
                         sx={{
                             color: "#666F77",
@@ -102,7 +102,7 @@ function InvoiceRow({ inv }: { inv: InvoiceItem }) {
                         {inv.dueDate}
                     </Typography>
                 </Grid>
-                <Grid size={{ xs: 12, sm: 6, md: 4 }}>
+                <Grid size={{ xs: 12, sm: 6, lg: 4 }}>
                     <Typography
                         sx={{
                             color: "#373B47",
@@ -131,7 +131,7 @@ function InvoiceRow({ inv }: { inv: InvoiceItem }) {
 
 export function RecentInvoices({ groups, onSelectInvoice }: { groups: InvoiceGroup[], onSelectInvoice: (invoice: InvoiceItem) => void; }) {
     return (
-        <Card sx={{ width: "60%", borderRadius: "40px", padding: '32px 32px 10px 32px' }}>
+        <Card sx={{ width: "100%", borderRadius: "40px", padding: '32px 32px 10px 32px' }}>
             <CardContent>
                 <Box
                     display="flex"
@@ -175,9 +175,17 @@ export function RecentInvoices({ groups, onSelectInvoice }: { groups: InvoiceGro
                             {g.dateLabel}
                         </Typography>
 
-                        <Box sx={{ display: "flex", flexDirection: "column", gap: 4 }}>
+                        <Box sx={{ display: "flex", flexDirection: "column", gap: 4, }}>
                             {g.invoices.map((inv) => (
-                                <Box key={inv.id} onClick={() => onSelectInvoice(inv)}>
+                                <Box key={inv.id} onClick={() => onSelectInvoice(inv)} sx={{
+                                    "&:hover": {
+                                        bgcolor: "#F2FBFF",
+                                        transform: "translateY(-3px)",
+                                        cursor: 'pointer',
+                                        padding: '10px',
+                                        borderRadius: "10px",
+                                    },
+                                }}>
                                     <InvoiceRow inv={inv} />
                                 </Box>
                             ))}
@@ -196,7 +204,8 @@ export function ActivityRow({ a }: { a: ActivityItem }) {
             sx={{
                 display: "flex",
                 gap: 2,
-                alignItems: "flex-start",
+                // alignItems: "flex-start",
+                width: '100%',
             }}
         >
             <img
@@ -245,7 +254,7 @@ export function RecentActivities({
     activities: ActivityItem[];
 }) {
     return (
-        <Card sx={{ width: "40%", borderRadius: "40px", padding: '32px 32px 10px 32px' }}>
+        <Card sx={{ width: "100%", borderRadius: "40px", padding: '32px 32px 10px 32px' }}>
             <CardContent>
                 <Box
                     display="flex"

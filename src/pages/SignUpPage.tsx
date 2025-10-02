@@ -5,20 +5,22 @@ import { auth, googleProvider } from "../services/firebase";
 import { useNavigate, useLocation, Link as RouterLink } from "react-router-dom";
 import { useAuth } from "../context/AuthContext";
 import GoogleIcon from "@mui/icons-material/Google";
+import { toast } from "react-toastify";
 
 const SignUpPage = () => {
     const navigate = useNavigate();
     const location = useLocation() as any;
-    const from = location.state?.from?.pathname || "/dashboard";
+    const from = location.state?.from?.pathname || "/invoice";
     const { signup } = useAuth();
 
     const handleGoogle = async () => {
         try {
             await signInWithPopup(auth, googleProvider);
             navigate(from, { replace: true });
+            toast.success("Login successful!");
         } catch (err) {
             console.error(err);
-            alert("Google signup failed");
+            toast.error("Google signup failed");
         }
     };
 
@@ -30,19 +32,22 @@ const SignUpPage = () => {
         const password = (form.elements.namedItem("password") as HTMLInputElement).value;
 
         try {
-            const newUser = await signup(email, password);
-
-            console.log(newUser, "newUsr")
-
-            // update profile with full name
+            await signup(email, password);
             if (auth.currentUser) {
                 await updateProfile(auth.currentUser, { displayName: fullName });
             }
 
             navigate(from, { replace: true });
-        } catch (err) {
-            console.error(err);
-            alert("Signup failed");
+        } catch (error: any) {
+            if (error.code === "auth/weak-password") {
+                toast.error("Password should be at least 6 characters");
+            } else if (error.code === "auth/email-already-in-use") {
+                toast.error("Email already exist");
+            }
+            else {
+                toast.error("Signup failed");
+            }
+
         }
     };
 
@@ -80,21 +85,18 @@ const SignUpPage = () => {
                         label="Full Name"
                         type="text"
                         required
-                    // InputProps={{ startAdornment: <PersonIcon sx={{ mr: 1, color: "action.active" }} /> }}
                     />
                     <TextField
                         name="email"
                         label="Email"
                         type="email"
                         required
-                    // InputProps={{ startAdornment: <EmailIcon sx={{ mr: 1, color: "action.active" }} /> }}
                     />
                     <TextField
                         name="password"
                         label="Password"
                         type="password"
                         required
-                    // InputProps={{ startAdornment: <LockIcon sx={{ mr: 1, color: "action.active" }} /> }}
                     />
                     <Button
                         type="submit"

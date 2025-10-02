@@ -3,6 +3,7 @@ import { Box, Typography, Button, TextField, Paper, Divider } from "@mui/materia
 import { signInWithPopup } from "firebase/auth";
 import { auth, googleProvider } from "../services/firebase";
 import { useAuth } from "../context/AuthContext";
+import { toast } from "react-toastify";
 import { useNavigate, useLocation, Link as RouterLink } from "react-router-dom";
 import GoogleIcon from "@mui/icons-material/Google";
 
@@ -10,15 +11,16 @@ export default function LoginPage() {
     const { login } = useAuth();
     const navigate = useNavigate();
     const location = useLocation() as any;
-    const from = location.state?.from?.pathname || "/dashboard";
+    const from = location.state?.from?.pathname || "/invoice";
 
     const handleGoogle = async () => {
         try {
             await signInWithPopup(auth, googleProvider);
             navigate(from, { replace: true });
+            toast.success("Login successful!");
         } catch (err) {
             console.error(err);
-            alert("Google login failed");
+            toast.error("Google login failed");
         }
     };
 
@@ -31,9 +33,11 @@ export default function LoginPage() {
         try {
             await login(email, password);
             navigate(from, { replace: true });
-        } catch (err) {
-            console.error(err);
-            alert("Login failed");
+            toast.success("Login successful!");
+        } catch (error: any) {
+            if (error.code === "auth/invalid-credential") {
+                toast.error("Incorrect Login details.");
+            }
         }
     };
 
@@ -71,14 +75,12 @@ export default function LoginPage() {
                         label="Email"
                         type="email"
                         required
-                    // InputProps={{ startAdornment: <EmailIcon sx={{ mr: 1, color: "action.active" }} /> }}
                     />
                     <TextField
                         name="password"
                         label="Password"
                         type="password"
                         required
-                    // InputProps={{ startAdornment: <LockIcon sx={{ mr: 1, color: "action.active" }} /> }}
                     />
                     <Button
                         type="submit"

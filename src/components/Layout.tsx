@@ -73,7 +73,7 @@ export default function DashboardLayout() {
                             "&.active": {
                                 padding: '0.5rem',
                                 borderRadius: '2rem',
-                                border: '5px solid #fbfbf8'
+                                border: '5px solid #F8F8FB'
                             },
                         }}
                         onClick={() => !isLargeScreen && setDrawerOpen(false)}
@@ -101,8 +101,8 @@ export default function DashboardLayout() {
                         <IconButton
                             edge="start"
                             color="inherit"
-                            onClick={() => setDrawerOpen(true)}
-                            sx={{ mr: 2 }}
+                            onClick={() => setDrawerOpen(!drawerOpen)}
+                            sx={{ mr: 2, color: "#003EFF" }}
                         >
                             <MenuIcon />
                         </IconButton>
@@ -132,6 +132,7 @@ export default function DashboardLayout() {
                             onClose={handleClose}
                             transformOrigin={{ vertical: "top", horizontal: "right" }}
                             anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+
                         >
                             <MenuItem disabled>{user?.displayName || user?.email}</MenuItem>
                             <MenuItem onClick={handleLogout}>Logout</MenuItem>

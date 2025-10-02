@@ -185,6 +185,15 @@ export default function InvoiceDetailsModal({
                             anchorEl={anchorEl}
                             open={Boolean(anchorEl)}
                             onClose={handleCloseMenu}
+                            PaperProps={{
+                                sx: {
+                                    background: "#fff",
+                                    borderRadius: "24px",
+                                    padding: "16px",
+                                    border: "1px solid #E3E6EF",
+                                    mt: '1rem'
+                                },
+                            }}
                         >
                             <MenuItem
                                 onClick={handleCloseMenu}
@@ -192,7 +201,8 @@ export default function InvoiceDetailsModal({
                                     color: "#697598",
                                     fontSize: "14px",
                                     lineHeight: "100%",
-                                    fontWeight: 700,
+                                    fontWeight: 600,
+                                    pb: '1rem'
                                 }}
                             >
                                 DUPLICATE INVOICE
@@ -203,7 +213,7 @@ export default function InvoiceDetailsModal({
                                     color: "#697598",
                                     fontSize: "14px",
                                     lineHeight: "100%",
-                                    fontWeight: 700,
+                                    fontWeight: 600,
                                 }}
                             >
                                 GET SHAREABLE LINK
@@ -220,6 +230,7 @@ export default function InvoiceDetailsModal({
                         mb: 3,
                         gap: 2,
                         borderRadius: "24px",
+                        // width: '100%',
                         border: "1px solid #E3E6EF",
                     }}
                 >
@@ -246,12 +257,15 @@ export default function InvoiceDetailsModal({
                             alignItems="center"
                             gap={1}
                             sx={{
-                                padding: "12px 16px",
+                                padding: { sm: "5px 10px", md: "12px 16px" },
                                 background: "#E6FFF0",
                                 borderRadius: "24px",
                             }}
                         >
-                            <Typography variant="body2"> {label}</Typography>
+                            <Typography sx={{
+                                colot: "#373B47", fontSize: "14px",
+                                lineHeight: "100%",
+                            }}> {label}</Typography>
                             <DoneIcon sx={{ color: "#2DB260" }} fontSize="small" />
                         </Box>
                     ))}

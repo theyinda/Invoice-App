@@ -4,6 +4,8 @@ import { BrowserRouter } from "react-router-dom";
 import { ThemeProvider, CssBaseline, createTheme } from "@mui/material";
 import App from "./App";
 import { AuthProvider } from "./context/AuthContext";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const theme = createTheme({
   palette: { mode: "light" },
@@ -23,9 +25,19 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
       <AuthProvider>
         <BrowserRouter>
           <App />
+          <ToastContainer
+            position="top-right"
+            autoClose={3000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick
+            rtl={false}
+            pauseOnFocusLoss
+            draggable
+            pauseOnHover
+          />
         </BrowserRouter>
       </AuthProvider>
     </ThemeProvider>
   </React.StrictMode>
 );
-
