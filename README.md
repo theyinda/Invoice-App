@@ -63,7 +63,7 @@ password: 1234567
 
 7. When you login successfully, it brings you to the dashboard page
 
-![Dashboard Screenshot](/public/details.png)
+![Dashboard Screenshot](/public/dashboard.png)
 
 8. Click on any of the recent invoices to view the invoice details of that particular invoice clicked:
 
