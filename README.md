@@ -64,8 +64,6 @@ password: 1234567
 
 7. Screenshots
 
-```bash
 ![Dashboard Screenshot](/public/dashboard.png)
 
 ![Dashboard Screenshot](/public/details.png)
-```
