@@ -48,7 +48,7 @@ export type InvoiceItem = {
     issueDate: string;
     dueDate: string;
     amount: string;
-    note?: string;
+    note: string;
     status: InvoiceStatus;
     currency?: string;
     sender?: UserInfo;

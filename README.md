@@ -1,8 +1,6 @@
 # React + TypeScript + Vite
 
-# Invoice App
-
-A simple invoice app built with **React + Vite**.  
+An invoice app built with React + TypeScript + Vite.
 Implements Firebase authentication, mock APIs with MSW, real-time updates, and responsive UI based on the provided Figma design.
 
 ---
@@ -18,12 +16,13 @@ Implements Firebase authentication, mock APIs with MSW, real-time updates, and r
 **Responsive** — Works on desktop & mobile  
 -**Error handling** — Invalid URLs, loading states
 
-````js
 1. Clone the repo
+
 ```bash
 git clone <your-repo-url>
 cd <repo>
-````
+
+```
 
 2. Install dependencies
 
@@ -42,7 +41,6 @@ VITE_FIREBASE_STORAGE_BUCKET=invoiceapp-41af8.firebasestorage.app
 VITE_FIREBASE_MESSAGING_SENDER_ID=931722537485
 VITE_FIREBASE_APP_ID=1:931722537485:web:a3a753de689f26c77ec344
 VITE_FIREBASE_MEASUREMENT_ID=G-DBRLQ9LQ7F
-NODE_ENV=development
 
 ```
 
@@ -58,6 +56,11 @@ npm run dev
 npm run test
 ```
 
-```
+6. Login test details:
+   You can login via google
+   OR
 
+```bash
+emai: test1@gmail.com
+password: 1234567
 ```

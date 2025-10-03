@@ -53,14 +53,7 @@ export default function DashboardLayout() {
 
     const drawerContent = (
         <Box sx={{ width: drawerWidth, padding: '0 1rem', background: '#fff' }}>
-            <Typography
-                variant="h6"
-                sx={{
-                    p: 2, textAlign: "center", fontWeight: "bold",
-                }}
-            >
-                INVOICE APP
-            </Typography>
+            <img src="/logo.svg" alt="logo" style={{ width: 24, height: 24, margin: '20px 0' }} />
             <List>
                 {navItems.map(({ to, label, icon }) => (
                     <ListItem
@@ -107,7 +100,7 @@ export default function DashboardLayout() {
                             <MenuIcon />
                         </IconButton>
                     )}
-                    <Typography variant="h6" sx={{ flexGrow: 1, fontSize: '28px', lineHeight: "100%", fontWeight: 600, color: "#373B47" }}>
+                    <Typography sx={{ flexGrow: 1, fontSize: '28px', lineHeight: "100%", fontWeight: 600, color: "#373B47" }}>
                         INVOICE
                     </Typography>
 

@@ -35,7 +35,7 @@ const Invoice = () => {
     return (
         <Box sx={{ p: 3 }}>
             <Box sx={{ display: { xs: "block", sm: "flex" }, justifyContent: "space-between", alignItems: "center", mb: 4, mt: 7 }}>
-                <Typography variant="h5" sx={{
+                <Typography sx={{
                     color: "#1F1F23",
                     fontSize: { xs: "20", sm: "32px" },
                     lineHeight: "100%", fontWeight: 700,
