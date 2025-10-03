@@ -4,7 +4,7 @@
 
 ## Features
 
-**Authentication** — Signup/Login with Firebase (Email/Password or Google)  
+**Authentication** — Signup/Login with Firebase (Email/Password or Google SSO)  
 **Dashboard** — Invoice stats, recent invoices, and activities  
 **Invoice Details** — Sender & customer info, payment info, and invoice activities
 **Mock Backend** — API requests handled with [MSW](https://mswjs.io/)  
@@ -27,7 +27,7 @@ npm install
 
 ```
 
-3. Setup environment variables
+3. Setup environment variables with these:
 
 ```bash
 VITE_FIREBASE_API_KEY=AIzaSyDQhEZ2OGyPTw7Jr1H2zg6DDQUbom5mpgo
@@ -40,13 +40,13 @@ VITE_FIREBASE_MEASUREMENT_ID=G-DBRLQ9LQ7F
 
 ```
 
-4. Run the project
+4. To run the project
 
 ```bash
 npm run dev
 ```
 
-5. Run tests:
+5. To run tests:
 
 ```bash
 npx vitest run
@@ -61,10 +61,12 @@ emai: test1@gmail.com
 password: 1234567
 ```
 
-7. When you login successfully, it brings you to the dashboard page
+7. Deployed link: https://invoiceapp-assessment.vercel.app/
+
+8. When you login successfully, it brings you to the dashboard page
 
 ![Dashboard Screenshot](/public/dashboard.png)
 
-8. Click on any of the recent invoices to view the invoice details of that particular invoice clicked:
+9. Click on any of the recent invoices to view the invoice details of that particular invoice clicked:
 
 ![Invoice Details Screenshot](/public/details.png)
