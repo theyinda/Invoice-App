@@ -12,7 +12,7 @@ type StatCardProps = {
 
 const StatCard = ({ icon, title, chipLabel, chipColor, value }: StatCardProps) => {
     return (
-        <Paper sx={{ p: 3, display: "flex", flexDirection: "column", gap: 1, alignItems: "flex-start", width: '250px', background: "#FFFFFF", borderRadius: '1.5rem' }}>
+        <Paper sx={{ p: 3, display: "flex", flexDirection: "column", gap: 1, alignItems: "flex-start", width: { xs: "100%", sm: "250px" }, background: "#FFFFFF", borderRadius: '1.5rem' }}>
             <Box>{icon || <AttachMoneyIcon color="action" />}</Box>
             <Box sx={{ display: "flex", gap: 1, alignItems: "center" }}>
                 <Typography variant="subtitle1" sx={{ fontSize: '12px', color: '#697598', lineHeight: "20px", fontWeight: 700, }}>

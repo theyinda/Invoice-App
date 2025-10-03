@@ -37,7 +37,7 @@ const Invoice = () => {
             <Box sx={{ display: { xs: "block", sm: "flex" }, justifyContent: "space-between", alignItems: "center", mb: 4, mt: 7 }}>
                 <Typography sx={{
                     color: "#1F1F23",
-                    fontSize: { xs: "20", sm: "32px" },
+                    fontSize: { xs: "25px", sm: "32px" },
                     lineHeight: "100%", fontWeight: 700,
                 }}>
                     Invoice
@@ -48,6 +48,7 @@ const Invoice = () => {
                         background: "#fff",
                         borderRadius: '40px',
                         padding: { xs: "10px 20px", sm: "15px 30px" },
+                        margin: { xs: "20px", sm: "0" },
                         cursor: "pointer",
                         border: '1px solid #E3E6EF',
                         fontSize: '14px', lineHeight: "100%", fontWeight: 700,
@@ -75,6 +76,7 @@ const Invoice = () => {
                         chipLabel={stats?.paid as string}
                         chipColor="#B6FDD3"
                         value={stats?.totalPaid as string}
+
                     />
                 </Grid>
                 <Grid size={{ xs: 12, sm: 6, lg: 3 }}>

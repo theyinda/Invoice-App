@@ -6,12 +6,11 @@
 
 **Authentication** — Signup/Login with Firebase (Email/Password or Google)  
 **Dashboard** — Invoice stats, recent invoices, and activities  
-**Invoice Details** — Sender & customer info, payment info, line items, activity feed  
+**Invoice Details** — Sender & customer info, payment info, and invoice activities
 **Mock Backend** — API requests handled with [MSW](https://mswjs.io/)  
-**Real-time updates** — Socket-based events for invoice updates (optional)  
-**Testing** — Unit & integration tests with Vitest + React Testing Library  
-**Responsive** — Works on desktop & mobile  
--**Error handling** — Invalid URLs, loading states
+**Testing** — Unit with Vitest + React Testing Library
+
+**Responsive** — Works on desktop & mobile
 
 1. Clone the repo
 
@@ -62,8 +61,10 @@ emai: test1@gmail.com
 password: 1234567
 ```
 
-7. Screenshots
-
-![Dashboard Screenshot](/public/dashboard.png)
+7. When you login successfully, it brings you to the dashboard page
 
 ![Dashboard Screenshot](/public/details.png)
+
+8. Click on any of the recent invoices to view the invoice details of that particular invoice clicked:
+
+![Invoice Details Screenshot](/public/details.png)

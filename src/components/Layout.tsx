@@ -35,7 +35,7 @@ export default function DashboardLayout() {
         { to: "/overview", label: "Overview", icon: <img src="/overview.svg" alt="home" style={{ width: 24, height: 24 }} /> },
         { to: "/accounts", label: "Accounts", icon: <img src="/home-2.svg" alt="home" style={{ width: 24, height: 24 }} /> },
         { to: "/invoice", label: "Invoices", icon: <img src="/invoice.svg" alt="home" style={{ width: 24, height: 24 }} /> },
-        { to: "/beneficiaries", label: "Beneficiary Mgmt", icon: <img src="/profile.svg" alt="home" style={{ width: 24, height: 24 }} /> },
+        { to: "/beneficiaries", label: "Beneficiary", icon: <img src="/profile.svg" alt="home" style={{ width: 24, height: 24 }} /> },
         { to: "/help", label: "Help Center", icon: <img src="/beneficiary.svg" alt="home" style={{ width: 24, height: 24 }} /> },
         { to: "/settings", label: "Settings", icon: <img src="/setting.svg" alt="home" style={{ width: 24, height: 24 }} /> },
     ];
